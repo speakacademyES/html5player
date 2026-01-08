@@ -13,6 +13,7 @@
             align-items: center;
             min-height: 100vh;
             background: #000;
+            position: relative;
         }
         video {
             max-width: 100%;
@@ -20,12 +21,43 @@
             width: auto;
             height: auto;
         }
+        #unmuteBtn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            z-index: 10;
+        }
+        #unmuteBtn:hover {
+            background: #fff;
+        }
     </style>
 </head>
 <body>
-    <video autoplay loop muted playsinline>
+    <video id="myVideo" autoplay loop muted playsinline>
         <source src="do_your_homework.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
+    <button id="unmuteBtn" onclick="toggleMute()">🔊 Unmute</button>
+
+    <script>
+        const video = document.getElementById('myVideo');
+        const btn = document.getElementById('unmuteBtn');
+        
+        function toggleMute() {
+            if (video.muted) {
+                video.muted = false;
+                btn.textContent = '🔇 Mute';
+            } else {
+                video.muted = true;
+                btn.textContent = '🔊 Unmute';
+            }
+        }
+    </script>
 </body>
 </html>
